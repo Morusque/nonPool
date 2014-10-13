@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base>
+	<var index="0"> </var>
+	<pool id="new"/>
+	<pool id="old"/>
+</base>
