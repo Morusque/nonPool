@@ -1,0 +1,16 @@
+// frame position x
+10
+// frame position y
+10
+// number of animations
+17
+// number of generators
+1
+// width
+1280
+// height
+720
+// auto next animation
+800
+// max frames in one anim
+10

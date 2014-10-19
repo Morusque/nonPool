@@ -1,6 +1,11 @@
 
 ArrayList<Generator> generators = new ArrayList<Generator>();
 
+<<<<<<< HEAD
+int maxFramesInOneAnim = 10;
+
+=======
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
 class Generator extends Thread {
 
   boolean running;
@@ -12,6 +17,11 @@ class Generator extends Thread {
 
   int currentGenerate=0;
 
+<<<<<<< HEAD
+  int maxFramesInThisAnim=maxFramesInOneAnim;
+
+=======
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
   DataProvider dataProvider;
 
   Generator(int w, String s, int index) {
@@ -37,6 +47,41 @@ class Generator extends Thread {
 
   int modType=0;
 
+<<<<<<< HEAD
+  void update() {
+    if (Runtime.getRuntime ().freeMemory()>=10000000) {
+      modType = floor(pow(dataProvider.getNextWordData(), 1.45f)*20)+1;
+      if (floor(dataProvider.getNextWordData()*1000)%5<1.5f) modType=0;
+      animations.get(currentGenerate).applyToBlendFrame(dataProvider.getNextLetterData());
+      animations.get(currentGenerate).applyText(dataProvider.text, dataProvider.getNextLetterData());
+      if (modType==0) animations.get(currentGenerate).applyKernel(kernel);
+      if (modType==1) animations.get(currentGenerate).applyZoom(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());      
+      if (modType==2) animations.get(currentGenerate).applyHSBShift(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==3) animations.get(currentGenerate).applyCut(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==4) animations.get(currentGenerate).applySorting(dataProvider.getNextLetterData());
+      if (modType==5) animations.get(currentGenerate).applySwitching(dataProvider.getNextLetterData());
+      if (modType==6) animations.get(currentGenerate).applyBlur(dataProvider.getNextLetterData());
+      if (modType==7) animations.get(currentGenerate).applyRotate(dataProvider.getNextLetterData());
+      if (modType==8) animations.get(currentGenerate).applyP5Filter(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());      
+      if (modType==9) animations.get(currentGenerate).applyOverShoot(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==10) animations.get(currentGenerate).applyPosterize(dataProvider.getNextLetterData());
+      if (modType==11) animations.get(currentGenerate).applyMosaik(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==12) animations.get(currentGenerate).applyCopy(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());      
+      if (modType==13) animations.get(currentGenerate).applyTorsion(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==14) animations.get(currentGenerate).applyPixelize(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==15) animations.get(currentGenerate).applyRegionRotations(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==16) animations.get(currentGenerate).applyLayerShift(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==17) animations.get(currentGenerate).applyLerpHue(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==18) animations.get(currentGenerate).applyShift(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==19) animations.get(currentGenerate).applyRectangle(dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (modType==20) animations.get(currentGenerate).applySubcells(dataProvider.getNextLetterData(), dataProvider.getNextLetterData());
+      if (animations.get(currentGenerate).adaptSpeedToChanges()>7) {
+        maxFramesInThisAnim=constrain(maxFramesInThisAnim+1, 1, maxFramesInOneAnim*2);
+      }
+      animations.get(currentGenerate).copyToNextFrame();
+    }    
+    if (animations.get(currentGenerate).frames.size()>maxFramesInThisAnim) {
+=======
   int maxFramesInOneAnim = 7;
 
   void update() {
@@ -64,6 +109,7 @@ class Generator extends Thread {
       animations.get(currentGenerate).copyToNextFrame();
     }    
     if (animations.get(currentGenerate).frames.size()>maxFramesInOneAnim) {
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
       switchToNextAnim();
     }
     if (Runtime.getRuntime ().freeMemory()<10000000 && !animations.get(0).frames.isEmpty()) {
@@ -85,7 +131,11 @@ class Generator extends Thread {
       String text = wordList[floor(random(wordList.length))];
       if (random(1)<0.5) text+=" "+wordList[floor(random(wordList.length))];
       dataProvider =  new DataProvider(text);
+<<<<<<< HEAD
+      println("Generator switch, from web : "+e.toString());
+=======
       println(e.toString());
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
     }
     if (!animations.get(lastGenerated).frames.isEmpty()) {
       animations.get(currentGenerate).addFrame(animations.get(lastGenerated).frames.get(animations.get(lastGenerated).frames.size()-1));
@@ -110,9 +160,16 @@ class Generator extends Thread {
         }
       }
       catch(Exception e) {
+<<<<<<< HEAD
+        println("Generator switch, pics from web : "+e);
+      }
+    }
+    maxFramesInThisAnim=maxFramesInOneAnim;
+=======
         println(e);
       }
     }
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
     regenerateKernel(dataProvider.lettersData);
     System.gc();
   }
@@ -123,7 +180,11 @@ class Generator extends Thread {
       taken=false;
       currentGenerate=(currentGenerate+1)%animations.size();
       if (currentGenerate!=currentDisplay) {
+<<<<<<< HEAD
+        for (int i=0; i<generators.size (); i++) if (i!=this.index) if (generators.get(i).currentGenerate==currentGenerate) taken=true;
+=======
         for (int i=0;i<generators.size();i++) if (i!=this.index) if (generators.get(i).currentGenerate==currentGenerate) taken=true;
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
       }
     }
   }
@@ -136,7 +197,11 @@ class Generator extends Thread {
         sleep((long)(wait));
       }
       catch (Exception e) {
+<<<<<<< HEAD
+        println("Generator run : "+e.toString());
+=======
         println(e.toString());
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
       }
     }
   }
@@ -147,8 +212,13 @@ class Generator extends Thread {
   }
 
   void regenerateKernel(float[] data) {
+<<<<<<< HEAD
+    int xS = max(floor(data[0]*10), 1);
+    int yS = max(floor(data[1%data.length]*9), 2);
+=======
     int xS = max(floor(data[0]*7), 1);
     int yS = max(floor(data[1%data.length]*7), 2);
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
     if (xS+yS==2) yS++;
     kernel = generateKernel(xS, yS, data);
   }
@@ -166,21 +236,36 @@ class DataProvider {
     this.text = _text;
     int v=0;
     lettersData = new float[text.length()];
+<<<<<<< HEAD
+    for (int i=0; i<text.length (); i++) {
+      v+=(int)floor(pow(text.charAt(i), 1.5));
+      lettersData[i]=((float)v%0x200)/0x200;
+    }
+    wRetrigger = ((v%6)==0);
+    lRetrigger = ((v%4)==0);
+=======
     for (int i=0;i<text.length();i++) {
       v+=(int)floor(pow(text.charAt(i), 1.5));
       lettersData[i]=((float)v%0x200)/0x200;
     }
     wRetrigger = (v%4==0);
     lRetrigger = (v%5==0);
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
     String[] words = text.split(" ");
     if (words.length==0) {
       words = new String[1];
       words[0] = " ";
     }
     wordsData = new float[words.length];
+<<<<<<< HEAD
+    for (int i=0; i<words.length; i++) {
+      wordsData[i]=0;
+      for (int j=0; j<words[i].length (); j++) {
+=======
     for (int i=0;i<words.length;i++) {
       wordsData[i]=0;
       for (int j=0;j<words[i].length();j++) {
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
         wordsData[i]+=words[i].charAt(j);
       }
       wordsData[i]=(wordsData[i]%0x200)/0x200;
@@ -203,10 +288,17 @@ class DataProvider {
 float[][][] generateKernel(int sizeX, int sizeY, float[] data) {
   int dataCounter=0;
   float[][][] kernel = new float[sizeX][sizeY][3];
+<<<<<<< HEAD
+  for (int x=0; x<kernel.length; x++) {
+    for (int y=0; y<kernel[x].length; y++) {
+      for (int c=0; c<kernel[x][y].length; c++) {
+        kernel[x][y][c]=map(pow(data[dataCounter], 2)*(data[dataCounter]<=0?-1:1), 0, 1, -2, 2);
+=======
   for (int x=0;x<kernel.length;x++) {
     for (int y=0;y<kernel[x].length;y++) {
       for (int c=0;c<kernel[x][y].length;c++) {
         kernel[x][y][c]=map(data[dataCounter], 0, 1, -2, 2);
+>>>>>>> abf7967c20ea6f3cb3b1465d32dfd8dff1bae4f0
         dataCounter=(dataCounter+1)%data.length;
       }
     }
